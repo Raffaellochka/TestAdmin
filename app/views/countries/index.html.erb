@@ -1,0 +1,12 @@
+<h1 class='mb-4'>Countries</h1>
+
+<%= link_to "New country", new_country_path, class: 'btn btn-primary btn-lh' %>
+<% @countries.each do |country| %>
+  <article class='card mt-3'>
+    <div class='card-body'>
+      <h4><%= country.name %></h4>
+  
+      <%= link_to 'Show', country_path(country), class: 'btn btn-primary' %>
+    </div>
+  </article>
+<% end %>
