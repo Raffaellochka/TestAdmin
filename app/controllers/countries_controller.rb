@@ -47,6 +47,6 @@ class CountriesController < ApplicationController
   end
 
   def set_country
-    @country = Country.find_by id: params[:id]
+    @country = Country.find params[:id]
   end
 end
