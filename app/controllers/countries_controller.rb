@@ -10,6 +10,7 @@ class CountriesController < ApplicationController
   def create
     @country = Country.new country_params
     if @country.save
+      flash[:success] = "Country created!"
       redirect_to countries_path
     else
       render :new
@@ -23,6 +24,7 @@ class CountriesController < ApplicationController
   def update
     @country = Country.find_by id: params[:id]
     if @country.update country_params
+      flash[:success] = "Country updated!"
       redirect_to countries_path
     else
       render :edit
@@ -32,6 +34,7 @@ class CountriesController < ApplicationController
   def destroy
     @country = Country.find_by id: params[:id]
     @country.destroy
+    flash[:success] = "Country deleted!"
     redirect_to countries_path
   end
 
