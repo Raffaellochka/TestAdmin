@@ -1,0 +1,5 @@
+<h1 class='mb-4'><%= @country.name %></h1>
+
+<%= link_to 'Редактировать', edit_country_path(@country), class: 'btn btn-secondary' %>
+<%= link_to 'Удалить', country_path(@country), class: 'btn btn-danger',
+  data: {method: :delete, confirm: 'Are you sure?'} %>
