@@ -4,12 +4,12 @@ class CountriesController < ApplicationController
   end
 
   def new
-    @countries = @countries.new
+    @country = Country.new
   end
 
   def create
-    @countries = Countries.new countries_params
-    if @countries.save
+    @country = Country.new country_params
+    if @country.save
       redirect_to countries_path
     else
       render :new
@@ -22,7 +22,7 @@ class CountriesController < ApplicationController
 
   def update
     @country = Country.find_by id: params[:id]
-    if @country.update countries_params
+    if @country.update country_params
       redirect_to countries_path
     else
       render :edit
@@ -41,7 +41,7 @@ class CountriesController < ApplicationController
 
   private
 
-  def countries_params
+  def country_params
     params.require(:country).permit(:name)
   end
 end
