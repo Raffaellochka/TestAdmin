@@ -1,4 +1,6 @@
 class CountriesController < ApplicationController
+  before_action :set_country, only: %i[show destroy edit update]
+
   def index
     @countries = Country.all
   end
@@ -18,11 +20,9 @@ class CountriesController < ApplicationController
   end
 
   def edit
-    @country = Country.find_by id: params[:id]
   end
 
   def update
-    @country = Country.find_by id: params[:id]
     if @country.update country_params
       flash[:success] = "Country updated!"
       redirect_to countries_path
@@ -32,19 +32,21 @@ class CountriesController < ApplicationController
   end
 
   def destroy
-    @country = Country.find_by id: params[:id]
     @country.destroy
     flash[:success] = "Country deleted!"
     redirect_to countries_path
   end
 
   def show
-    @country = Country.find_by id: params[:id]
   end
 
   private
 
   def country_params
     params.require(:country).permit(:name)
+  end
+
+  def set_country
+    @country = Country.find_by id: params[:id]
   end
 end
