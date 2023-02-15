@@ -1,5 +1,5 @@
 class CountriesController < ApplicationController
-  before_action :set_country, only: %i[show destroy edit update]
+  before_action :set_country, only: %i[show edit update destroy]
 
   def index
     @countries = Country.all
@@ -32,12 +32,14 @@ class CountriesController < ApplicationController
   end
 
   def destroy
+    @country = Country.find params[:id]
     @country.destroy
     flash[:success] = "Country deleted!"
     redirect_to countries_path
   end
 
   def show
+    @regions = @country.regions
   end
 
   private
