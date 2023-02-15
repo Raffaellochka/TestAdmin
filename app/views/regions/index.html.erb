@@ -1,0 +1,15 @@
+<h1 class='mb-4'>Regions</h1>
+
+<%= link_to "New region", new_country_region_path, class: 'btn btn-primary btn-lh' %>
+<% @regions.each do |region| %>
+  <article class='card mt-3'>
+    <div class='card-body'>
+      <h4><%= region.name %></h4>
+  
+      <%= link_to 'Show', country_regions_path(@country), class: 'btn btn-primary' %>
+      <%= link_to 'Edit', edit_country_region_path(@country, region), class: 'btn btn-secondary' %>
+      <%= link_to 'Delete', country_region_path(@country, region), class: 'btn btn-danger',
+        data: {method: :delete, confirm: 'Are you sure?'} %>
+    </div>
+  </article>
+<% end %>
