@@ -6,7 +6,7 @@
     <div class='card-body'>
       <h4><%= region.name %></h4>
   
-      <%= link_to 'Show', country_regions_path(@country), class: 'btn btn-primary' %>
+      <%= link_to 'Show', country_region_cities_path(@country, region), class: 'btn btn-primary' %>
       <%= link_to 'Edit', edit_country_region_path(@country, region), class: 'btn btn-secondary' %>
       <%= link_to 'Delete', country_region_path(@country, region), class: 'btn btn-danger',
         data: {method: :delete, confirm: 'Are you sure?'} %>
