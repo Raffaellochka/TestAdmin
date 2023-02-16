@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_16_140201) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_16_150153) do
   create_table "cities", force: :cascade do |t|
     t.string "name"
     t.integer "region_id", null: false
@@ -21,6 +21,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_16_140201) do
     t.string "name"
   end
 
+  create_table "hostels", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "price"
+    t.string "region_name"
+    t.string "city_name"
+    t.integer "city_id", null: false
+    t.index ["city_id"], name: "index_hostels_on_city_id"
+  end
+
   create_table "regions", force: :cascade do |t|
     t.string "name"
     t.integer "country_id", null: false
@@ -28,5 +38,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_16_140201) do
   end
 
   add_foreign_key "cities", "regions"
+  add_foreign_key "hostels", "cities"
   add_foreign_key "regions", "countries"
 end
