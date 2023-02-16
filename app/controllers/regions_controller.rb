@@ -1,6 +1,6 @@
 class RegionsController < ApplicationController
-
   before_action :set_country
+  before_action :set_region, only: %i[destroy edit update]
     
   def index
     @regions = @country.regions
@@ -21,18 +21,15 @@ class RegionsController < ApplicationController
   end
 
   def destroy
-    region = @country.regions.find params[:id]
-    region.destroy
+    @region.destroy
     flash[:success] = "Region deleted!"
     redirect_to country_regions_path
   end
 
   def edit
-    @region = @country.regions.find params[:id]
   end
 
   def update
-    @region = @country.regions.find params[:id]
     if @region.update region_params
       flash[:success] = "Region updated!"
       redirect_to country_regions_path
@@ -40,6 +37,7 @@ class RegionsController < ApplicationController
       render :edit
     end
   end
+
   private
 
   def region_params
@@ -48,6 +46,10 @@ class RegionsController < ApplicationController
 
   def set_country
     @country = Country.find params[:country_id]
+  end
+
+  def set_region
+    @region = @country.regions.find params[:id]
   end
 
 end
