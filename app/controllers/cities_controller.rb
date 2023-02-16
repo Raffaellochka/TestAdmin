@@ -4,20 +4,14 @@ class CitiesController < ApplicationController
   before_action :set_city, only: %i[destroy edit update]
 
   def index
-    @country = Country.find params[:country_id]
-    @region = @country.regions.find params[:region_id]
     @cities = @region.cities
   end
 
   def new
-    @country = Country.find params[:country_id]
-    @region = @country.regions.find params[:region_id]
     @city = @region.cities.build
   end
 
   def create
-    @country = Country.find params[:country_id]
-    @region = @country.regions.find params[:region_id]
     @city = @region.cities.build city_params
     if @city.save
       flash[:success] = "City created!"
@@ -34,7 +28,6 @@ class CitiesController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
