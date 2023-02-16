@@ -1,0 +1,19 @@
+<h1 class='mb-4'>Hostels</h1>
+
+<%= link_to "New hostel", new_country_region_city_hostel_path, class: 'btn btn-primary btn-lh' %>
+<% @hostels.each do |hostel| %>
+  <article class='card mt-3'>
+    <div class='card-body'>
+      <h4><%= hostel.name %></h4>
+
+      <p>
+        <%= hostel.region_name %>, <%= hostel.city_name %>
+      </p>
+  
+      <%= link_to 'Show', country_region_city_hostel_path(@country, @region, @city, hostel), class: 'btn btn-primary' %>
+      <%= link_to 'Edit', edit_country_region_city_hostel_path(@country, @region, @city, hostel), class: 'btn btn-secondary' %>
+      <%= link_to 'Delete', country_region_city_hostel_path(@country, @region, @city, hostel), class: 'btn btn-danger',
+        data: {method: :delete, confirm: 'Are you sure?'} %>
+    </div>
+  </article>
+<% end %>
